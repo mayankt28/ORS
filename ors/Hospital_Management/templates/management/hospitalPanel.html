@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+
+
+{% block content %}
+
+<script type="text/javascript" src="{% static 'mgmt_sys/js/panelJs.js' %}"></script>
+<link href="{% static 'mgmt_sys/css/panelStyle.css' %}" rel='stylesheet' type='text/css'>
+
+
+
+
+
+<nav class="navbar navbar-inverse sidebar" role="navigation">
+    <div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Welcome,</a>
+		</div>
+		
+		
+		
+		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				
+				
+				<li ><a href="#doctorsAvaliablity" aria-controls="doctorsAvaliablity" role="tab" data-toggle="tab">Doctors Availablity<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+				
+
+                <li ><a href="#PatientStatus" aria-controls="PatientStatus" role="tab" data-toggle="tab">Patient Status<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+                
+                <li ><a href="/hospital/register-new-doctor">Register New Doctor<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+                
+
+                <li ><a href="{% url 'hospital-logout' %}">Sign out<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon glyphicon-log-out"></span></a></li>
+			</ul>
+		</div>
+		
+	</div>
+</nav>
+<div class="main">
+        
+    <div class="tab-content container" style="width: auto">
+                    
+                
+        
+                    <div role="tabpanel" class="tab-pane active" id="doctorsAvaliablity">
+                        <h2 style="text-align: center; padding: 40px;">Doctors Avaliablity</h2>
+                            <div class="">   
+	                            <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Name.</th>
+                                            <th scope="col">Change Status</th>
+                                            <th scope="col">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for doctor in doctorList %}
+	                                    <tr>
+	                                    	<td>{{ doctor.doctorName }}</td>
+                                            <td><button type="submit" onclick="window.location.href='/hospital/doctor/changeStatus/{{ doctor.pk}}'" class="btn btn-info" >Change</button></td>
+	                                        <td>{{ doctor.doctor_status }}</td>
+	                                    </tr>
+                                        {% endfor %}
+	                                </tbody>
+	                            </table>
+	                        </div>
+	                    
+                       	<div class="line"></div>
+                    </div>
+
+
+                    <div role="tabpanel" class="tab-pane" id="PatientStatus">
+                        <h2 style="text-align: center; padding: 40px;">Patient Status</h2>
+                            <div class="">   
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Booking Id</th>
+                                            <th scope="col">Doctor Appointed</th>
+                                            <th scope="col">Department</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                            {% for apointment in booking %}
+                                            <tr>
+                                                <td>{{ apointment.booking_id }}</td>
+                                                <td>{{ apointment.hospital }}</td>
+                                                <td>{{ apointment.department }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        
+                        <div class="line"></div>
+                    </div>        
+                </div>
+            </div>
+
+{% endblock %}

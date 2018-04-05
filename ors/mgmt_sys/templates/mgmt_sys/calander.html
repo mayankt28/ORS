@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<center>
+<form method="post" id="form">
+    {% csrf_token %}
+    <input class="form-control" type="date" id="cal" name="appointment_date">
+    <input class="form-control" type="submit" name="Submit">
+</form>
+</center>
+{% endblock %}
+
+
+{% block script %}
+
+<script>
+	function myfunction(){
+		var d1=new Date();
+		var d2=new Date(document.getElementById("cal").value);
+
+		if(d1.getTime()>=d2.getTime())
+			alert("Previous date is not allowed");
+		}
+		else {
+			document.getElementById("form").submit();
+		}
+</script>
+
+
+{% endblock %}

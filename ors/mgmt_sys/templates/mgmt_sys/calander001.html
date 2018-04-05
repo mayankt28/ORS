@@ -1,0 +1,37 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'mgmt_sys/css/eventCalendar.css' %}">
+	<link rel="stylesheet" href="{% static 'mgmt_sys/css/eventCalendar_theme_responsive.css' %}">
+        <title>My Calendar</title>
+{% endblock %}
+
+
+{% block content %}
+	<div id="eventCalendar" style="width: 500px; margin: 30px auto;"></div>
+    <p id="demo"></p>
+{% endblock %}
+
+{% block script %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="{% static 'mgmt_sys/js/moment.js' %}"></script>
+	<script src="{% static 'mgmt_sys/js/jquery.eventCalendar.js' %}"></script>
+    <script>
+        $(function(){
+            var data= [
+                {
+                    "date":"2018-03-26 22:09:20", "title":" 5 available"}
+            ];
+            $('#eventCalendar').eventCalendar({
+                jsonData: data,
+                jsonDateFormat:'human'
+
+            });
+            document.getElementById("demo").value=data;
+
+
+        });
+    </script>
+{% endblock %}

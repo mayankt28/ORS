@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+
+{%load static %}
+
+
+
+{% block content %}
+
+<script type="text/javascript" src="{% static 'mgmt_sys/js/StatesList.js' %}"></script>
+
+
+    <form  method ="POST" >
+        {% csrf_token %}
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+
+
+  <div class="form-group">
+  <label class="control-label col-sm-2">Select States</label>
+      <div class="col-sm-10">
+      <select id="States" name="state" class="form-control">
+        </select>
+      </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2">Select Hospital:</label>
+    <div class="col-sm-10">
+      <select id="Hospitals" name="hospital" class="form-control">
+          <option disabled selected>Select Hospital</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2">Select Departments:</label>
+    <div class="col-sm-10">
+      <select id="Departments" name="department" class="form-control">
+          <option disabled selected>Select Departments</option>
+      </select>
+    </div>
+    <script>
+        populateStates("States", "Hospitals","Departments");
+    </script>
+
+
+
+  </div>
+
+<input type="submit" name="Submit">
+
+        <a class = 'btn btn-danger' href="">Cancel</a>
+</form>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+

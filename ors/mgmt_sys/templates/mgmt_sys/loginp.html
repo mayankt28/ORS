@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+
+{%load static %}
+
+
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>ORS:Patient</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet">
+    <!--external css-->
+    <link href="{% static 'assets/font-awesome/css/font-awesome.css' %}" rel="stylesheet" />
+        
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style-responsive.css' %}" rel="stylesheet">
+
+  <style>
+    .site-footer{
+    position: fixed;
+  background-color:#f7a138;
+  color:black;
+  margin-left:210px;
+}
+
+	</style>
+
+{% endblock %}
+
+{% block content %}
+
+	  <div id="login-page">
+	  	<div class="container">
+	  	
+		      <form class="form-login"  action="{% url 'patient_login_Page' %}" method="post">
+          {% csrf_token %}
+		        <h2 class="form-login-heading">sign in now</h2>
+		        <div class="login-wrap">
+		            <input type="text" class="form-control" placeholder="User ID" name="username" autofocus>
+		            <br>
+		            <input type="password" class="form-control" name="password" placeholder="Password">
+		            <label class="checkbox">
+		                <span class="pull-right">
+		                    <a data-toggle="modal" href="{% url 'patient-forgotpassword' %}" > Forgot Password?</a>
+		
+		                </span>
+		            </label>
+		            <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
+		            <hr>
+		            
+		            <div class="registration">
+		                <a class="" href="{% url 'register-patient' %}">
+							         Register new Patient
+		                </a>
+		            </div>
+		
+		        </div>
+		
+		          <!-- modal -->
+		
+		      </form>	  	
+	  	
+	  	</div>
+	  </div>
+
+
+
+
+{% endblock %}
+
+{% block script %}
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="{% static 'assets/js/jquery.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <!--script for this page-->
+    
+  <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+
+
+
+
+    <script type="text/javascript" src="{% static 'assets/js/jquery.backstretch.min.js' %}"></script> 
+    <script>
+        $.backstretch("{% static 'assets/img/background.png' %}", {speed: 500});
+    </script>
+
+{% endblock %}

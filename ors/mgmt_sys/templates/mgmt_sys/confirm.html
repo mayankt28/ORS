@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div style="padding-bottom:20px;"><span><h2><center> Appointment Receipt </center></h2></span></div>
+
+<table class="table">
+  <thead>
+    <tr>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+      <td>Booking id</td>
+      <td>{{ bid }}</td>
+    </tr>
+    <tr>
+
+      <td>Patient's name</td>
+      <td>{{pname}}</td>
+
+    </tr>
+    <tr>
+
+      <td>Hospital</td>
+      <td>{{hospital}}</td>
+
+    </tr>
+
+    <tr>
+
+      <td>Department</td>
+      <td>{{department}}</td>
+
+    </tr>
+        <tr>
+
+      <td>Appointment date</td>
+      <td>{{appointment_date}}</td>
+
+    </tr>
+
+
+
+  </tbody>
+</table>
+
+
+
+
+ <a class= 'btn btn-primary' href="/payment/process">Confirm</a>
+  <a class= 'btn btn-primary' href="{% url 'cal' %}">Reschedule</a>
+
+
+
+{% endblock %}

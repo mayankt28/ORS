@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+
+{%load static %}
+
+
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>ORS:Patient</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet">
+    <!--external css-->
+    <link href="{% static 'assets/font-awesome/css/font-awesome.css' %}" rel="stylesheet" />
+        
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style-responsive.css' %}" rel="stylesheet">
+
+  <style>
+    .site-footer{
+    position: fixed;
+  background-color:#f7a138;
+  color:black;
+  margin-left:210px;
+}
+
+  </style>
+
+{% endblock %}
+
+{% block content %}
+
+      <div id="login-page">
+          <div class="container">
+      
+          <form class="form-login" method="post" action="{% url 'register_hospital' %}">
+          {% csrf_token %}
+              <h2 class="form-login-heading">Patient Registration</h2>
+              <div class="login-wrap">
+                      
+                        <div class="form-group">
+                            <label for="firstName">Hospital Name</label>
+                            <input type="text" maxlength="25" class="form-control" name="hospitalName" required>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="firstName">Hospital Type</label>
+                          <input type="text" maxlength="25" class="form-control" name="hospital_type">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="firstName">Under Government</label>
+                          <input type="text" maxlength="25" class="form-control" name="under_govt" required>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="address">hospital Address</label>
+                          <textarea class="form-control" id="address" name="hospital_address" required></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label for="hospital_state">hospital State</label>
+                          <input type="text" class="form-control" maxlength="25" id="hospital_state" name="hospital_state" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="hospital_district">hospital District</label>
+                          <input type="text" class="form-control" maxlength="25" id="hospital_district" name="hospital_district" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="hospital_website">hospital Website</label>
+                          <input type="text" class="form-control" maxlength="25" id="hospital_website" name="hospital_website">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="nodal_officer_name">Nodal Officer Name</label>
+                          <input type="text" class="form-control" maxlength="25" id="nodal_officer_name" name="nodal_officer_name">
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="nodal_officer_email">Nodal Officer Email</label>
+                          <input type="email" class="form-control" maxlength="25" id="nodal_officer_email" name="nodal_officer_email">
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="nodal_officer_email">Nodal Officer Password</label>
+                          <input type="password" class="form-control" maxlength="25" id="nodal_officer_email" name="nodal_officer_password">
+                        </div>
+                        
+                        
+                        
+
+
+                        <button class="btn btn-theme btn-block" href="patient.html" type="submit"><i class="fa fa-lock"></i> SUBMIT</button>
+                        <hr>
+                  </div>
+              </form>     
+          </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="{% static 'assets/js/jquery.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <!--script for this page-->
+    
+  <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+
+
+
+
+    <script type="text/javascript" src="{% static 'assets/js/jquery.backstretch.min.js' %}"></script> 
+    <script>
+        $.backstretch("{% static 'assets/img/background.png' %}", {speed: 500});
+    </script>
+
+{% endblock %}

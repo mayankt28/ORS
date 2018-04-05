@@ -1,0 +1,11 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+    <a  class='btn btn-primary' href="{% url 'appointment' %}">I have Aadhar</a>
+    <a  class='btn btn-primary' href="{% url 'appointment' %}" onclick="window.alert('Patient without Aadhaar would need to collect OPD card at the hospital counter on the date of appointment by paying registration fee.')">I don't have Aadhar</a>
+    <a  class='btn btn-primary' href="">Already registered</a>
+    <a  class='btn btn-primary' href="">View/Pay/Print/Cancel appointment</a>
+
+{% endblock %}

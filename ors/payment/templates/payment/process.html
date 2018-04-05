@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Pay using PayPal</h1>
+    {{ form.render }}
+
+    <br>
+    <br>
+    <a href="{% url 'save_data' %}">Maybe Later</a>
+{% endblock %}

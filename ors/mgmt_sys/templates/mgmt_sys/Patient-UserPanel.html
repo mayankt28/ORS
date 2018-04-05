@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+
+{%load static %}
+
+
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>ORS:Patient</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet">
+    <!--external css-->
+    <link href="{% static 'assets/font-awesome/css/font-awesome.css' %}" rel="stylesheet" />
+        
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style-responsive.css' %}" rel="stylesheet">
+
+	<style>
+		.site-footer{
+    position: fixed;
+	background-color:#f7a138;
+	color:black;
+	margin-left:210px;
+
+    /*left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: */
+}
+	</style>
+
+{% endblock %}
+
+{% block content %}
+
+  <section id="container" >
+      
+      <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+              </div>
+            <!--logo start-->
+            <a href="index.html" class="logo"><b>Hi!!! {{ patient.first_name }}</b></a>
+            <!--logo end-->
+            <div class="nav notify-row" id="top_menu">
+                <!--  notification start -->
+                
+            </div>
+            <div class="top-menu">
+            	<ul class="nav pull-right top-menu">
+                    <li><a class="btn btn-primary" href="{% url 'patient_logout_page' %}">Logout</a></li>
+            	</ul>
+            </div>
+        </header>
+      
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">
+              
+              	  <p class="centered"><a href="profile.html"><img src="{% static 'assets/img/ui-sam.jpg' %}" class="img-circle" width="60"></a></p>
+              	  <h5 class="centered">{{ patient.first_name }}</h5>
+              	  	
+                  <li class="mt">
+                      <a href="#dashboard">
+                          <i class="fa fa-dashboard"></i>
+                          <span>Dashboard</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Profile</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="#view">View</a></li>
+                          <li><a  href="#update">Update</a></li>
+                          <li><a  href="#changePassword">Change Password</a></li>
+                      </ul>
+                  </li>
+
+                  <li class="mt">
+                      <a href="/patient/appointment/booknew">
+                          <i class="fa fa-dashboard"></i>
+                          <span>Book New Appintment</span>
+                      </a>
+                  </li>
+
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      
+      <section id="main-content">
+          <section class="wrapper">
+          	<h3><i class="fa fa-angle-right"></i> Your Appintments</h3>
+				<div class="row">
+				
+	                  <div class="col-md-12">
+	                  	  <div class="content-panel">
+	                  	  	  <h4>
+	                  	  	  	<i class="fa fa-angle-right">Upcoming Appintments</i>
+	                  	  	  </h4>
+	                  	  	  <hr/>
+		                      <table class="table">
+		                          <thead>
+			                          <tr>
+			                              <th>Sr. No.</th>
+										  <th>Booking Id</th>
+			                              <th>Hospital Name</th>
+			                              <th>Department Name</th>
+			                              <th>Booking Date</th>
+			                              <th>Appointment Date</th>
+			                              <th></th><!-- Reschedule Booking -->
+			                              <th></th><!-- Cancel Booking -->
+			                              <th></th><!-- Print Receipt -->
+
+			                          </tr>
+		                          </thead>
+		                          <tbody>
+	                              {% for upcoming_appointment in upcoming_appointments %}	
+	                              <tr>
+	                                  <td></td>
+	                                  <td>{{upcoming_appointment.booking_id}}</td>
+	                                  <td>{{upcoming_appointment.hospital}}</td>
+	                                  <td>{{upcoming_appointment.department}}</td>
+	                                  <td>{{upcoming_appointment.booking_date}}</td>
+	                                  <td>{{upcoming_appointment.appointment_date}}</td>
+	                                  <td><button type="submit" onclick="window.location.href='/patient/appointment/reschedule/{{ upcoming_appointment.booking_id}}'" class="btn btn-info" >Reschedule</button></td>
+			                          <td><button type="submit" onclick="window.location.href='/patient/appointment/cancel/{{ upcoming_appointment.booking_id}}'" class="btn btn-warning">Cancel</button></td>
+			                          <td><button type="submit" onclick="window.location.href='/patient/appointment/print/{{ upcoming_appointment.booking_id}}' " class="btn btn-primary">Print</button></td>
+	                              </tr>
+	                              {% endfor %}
+		                          </tbody>
+		                      </table>
+	                  	  </div><!--/content-panel -->
+	                  </div><!-- /col-md-12 -->
+                  
+
+	                  <div class="col-md-12 mt">
+	                  	<div class="content-panel">
+	                          <table class="table table-hover">
+	                  	  	  <h4><i class="fa fa-angle-right"></i>Previous Appintments</h4>
+	                  	  	  <hr>
+	                              <thead>
+		                              <tr>
+		                                  <th>Sr. no</th>
+		                                  <th>Booking Id</th>
+										  <th>Hospital Name</th>
+		                                  <th>Department Name</th>
+										  <th>Booking Date</th>
+										  <th>Appointment Date</th>
+		                              </tr>
+	                              </thead>
+	                              <tbody>
+	                              {% for past_appointment in past_appointments %}	
+	                              <tr>
+	                                  <td></td>
+	                                  <td>{{past_appointment.booking_id}}</td>
+	                                  <td>{{past_appointment.hospital}}</td>
+	                                  <td>{{past_appointment.department}}</td>
+	                                  <td>{{past_appointment.booking_date}}</td>
+	                                  <td>{{past_appointment.appointment_date}}</td>
+	                              </tr>
+	                              {% endfor %}
+	                              </tbody>
+	                          </table>
+	                  	  </div><!--/content-panel -->
+	                  </div><!-- /col-md-12 -->
+				</div><!-- row -->
+
+
+		</section><!--/wrapper -->
+      </section><!-- /MAIN CONTENT -->
+
+      <!--main content end-->
+      <!--footer start-->
+      <footer class="site-footer">
+          <div class="text-center">
+              @Code Daemons
+              <a href="basic_table.html#" class="go-top">
+                  <i class="fa fa-angle-up"></i>
+              </a>
+          </div>
+      </footer>
+      <!--footer end-->
+  </section>
+
+{% endblock %}
+
+{% block script %}
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="{% static 'assets/js/jquery.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script class="include" type="text/javascript" src="{% static 'assets/js/jquery.dcjqaccordion.2.7.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.scrollTo.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.nicescroll.js' %}" type="text/javascript"></script>
+
+
+    <script src="{% static 'assets/js/common-scripts.js' %}"></script>	
+
+    <!--script for this page-->
+    
+  <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+
+
+{% endblock %}

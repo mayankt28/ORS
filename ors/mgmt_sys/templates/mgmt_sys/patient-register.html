@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+
+{%load static %}
+
+
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>ORS:Patient</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet">
+    <!--external css-->
+    <link href="{% static 'assets/font-awesome/css/font-awesome.css' %}" rel="stylesheet" />
+        
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style-responsive.css' %}" rel="stylesheet">
+
+  <style>
+    .site-footer{
+    position: fixed;
+  background-color:#f7a138;
+  color:black;
+  margin-left:210px;
+}
+
+	</style>
+
+{% endblock %}
+
+{% block content %}
+
+      <div id="login-page">
+          <div class="container">
+	  	
+		      <form class="form-login" method="post" action="{% url 'patient_register_details' %}">
+		      {% csrf_token %}
+		          <h2 class="form-login-heading">Patient Registration</h2>
+		          <div class="login-wrap">
+                      <input type="hidden" class="form-control" name="initials" value="mr." required>
+                      
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" maxlength="25" class="form-control" name="first_name" required>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="firstName">Middle Name</label>
+                          <input type="text" maxlength="25" class="form-control" name="middle_name">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="firstName">Last Name</label>
+                          <input type="text" maxlength="25" class="form-control" name="last_name" required>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="pwd">Gender</label>
+                          <select name="gender" class="form-control" required>
+                            <option selected value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="dob">DOB</label>
+                          <input type="date" required class="form-control" id="dob" name="dob">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="fathername">Father's Name</label>
+                          <input type="text" maxlength="25" class="form-control" id="fathername" name="son_daughter_of">
+                        </div>
+                        <div class="form-group">
+                          <label for="mother_name">Mother's Name</label>
+                          <input type="text" maxlength="25" class="form-control" id="mother_name" name="mother_name">
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Email</label>
+                          <input type="text" maxlength="25" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="mobile">Mobile</label>
+                          <input type="number" maxlength="25" class="form-control" id="mobile" name="mobile" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="address">Address</label>
+                          <textarea class="form-control" maxlength="25" id="address" name="address" required></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label for="state">State</label>
+                          <input type="text" maxlength="25" class="form-control" id="pwd" name="state" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="country">Country</label>
+                          <input type="text" maxlength="25" class="form-control" id="country" name="country" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="pwd">Pin Code</label>
+                          <input type="number" maxlength="25" class="form-control" id="pincode" name="pincode">
+                        </div>
+                        <button class="btn btn-theme btn-block" href="patient.html" type="submit"><i class="fa fa-lock"></i> SUBMIT</button>
+                        <hr>
+                  </div>
+              </form>	  	
+          </div>
+	  </div>
+
+{% endblock %}
+
+{% block script %}
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="{% static 'assets/js/jquery.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <!--script for this page-->
+    
+  <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+
+
+
+
+    <script type="text/javascript" src="{% static 'assets/js/jquery.backstretch.min.js' %}"></script> 
+    <script>
+        $.backstretch("{% static 'assets/img/background.png' %}", {speed: 500});
+    </script>
+
+{% endblock %}
